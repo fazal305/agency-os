@@ -11,6 +11,9 @@ This project was developed as part of the DecodeLabs Frontend Development Intern
 https://fazal305.github.io/decodelabs-static-agency/
 
 ---
+## Screenshot
+
+![Homepage Preview](assets/screenshots/homepage.png)
 
 ## Features
 
