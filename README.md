@@ -1,98 +1,72 @@
-# Nexora Labs — Software Agency Landing Page
+# DecodeLabs Static Agency
 
-A modern software agency landing page built using only HTML and CSS.
-
-This project was developed as part of the DecodeLabs Frontend Development Internship and demonstrates semantic HTML, responsive CSS, CSS Grid, Flexbox, and modern layout techniques.
-
----
+A modern static software agency landing page built with semantic HTML and responsive CSS.
 
 ## Live Demo
 
 https://fazal305.github.io/decodelabs-static-agency/
 
----
+## Project Overview
+
+DecodeLabs Static Agency is a portfolio-ready landing page for a fictional software studio. It presents a clear agency offer, service cards, selected work, a simple delivery process, and a contact call-to-action.
+
+The project is intentionally lightweight and framework-free. It demonstrates strong HTML structure, CSS Grid, Flexbox, responsive design, reusable styling, and a polished visual direction without JavaScript or a build step.
+
 ## Screenshot
 
 ![Homepage Preview](assets/screenshots/homepage.png)
 
 ## Features
 
-- Semantic HTML5 structure
-- Mobile-first responsive design
-- CSS Grid layouts
-- Flexbox navigation and components
-- Proper heading hierarchy
-- Accessible page structure
-- Hero section
-- Services section
-- Project showcase section
-- Agency process section
-- Contact call-to-action section
-- Modern cyberpunk-inspired UI
-- Fully responsive layout
+- Semantic HTML5 page structure
+- Responsive mobile-first layout
+- CSS Grid service and project sections
+- Flexbox navigation and action groups
+- Hero section with clear agency positioning
+- Service cards for landing pages, web apps, and dashboards
+- Selected work showcase
+- Four-step agency process section
+- Contact call-to-action
+- Accessible image alt text
+- External CSS only
 
----
-
-## Technologies Used
+## Tech Stack
 
 - HTML5
 - CSS3
-
----
 
 ## Project Structure
 
 ```text
 decodelabs-static-agency/
-│
-├── index.html
-├── style.css
-├── README.md
-├── LICENSE
-└── .gitignore
+|-- index.html
+|-- style.css
+|-- README.md
+|-- LICENSE
+|-- assets/
+|   |-- screenshots/
+|       |-- homepage.png
 ```
 
----
+## Learning Goals
 
-## Learning Objectives
+This project practices:
 
-This project demonstrates:
-
-- Semantic web development
-- Responsive design principles
-- CSS Grid layouts
-- Flexbox alignment
-- Clean code organization
-- Mobile-first development
-- Professional landing page structure
-
----
-
-## DecodeLabs Requirements Covered
-
-- Semantic HTML
-- External CSS only
+- Semantic page layout
 - Responsive design
 - CSS Grid
 - Flexbox
-- Proper heading hierarchy
-- Accessible images
-- Mobile-first approach
-- Clean reusable styling
-
----
+- Reusable utility classes
+- Visual hierarchy
+- Landing page copy structure
+- Clean static site organization
 
 ## Author
 
 Fazal Abbas
 
-GitHub:
-https://github.com/fazal305
-
-LinkedIn:
-https://www.linkedin.com/in/fazal-abbas-4653dg86
-
----
+- GitHub: https://github.com/fazal305
+- LinkedIn: https://www.linkedin.com/in/fazal-abbas-4653dg86
 
 ## License
 
