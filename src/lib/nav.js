@@ -1,0 +1,45 @@
+import {
+  LayoutDashboard,
+  Users,
+  FolderKanban,
+  ClipboardList,
+  FileText,
+  Receipt,
+  KeyRound,
+  CalendarDays,
+  PackageCheck,
+  BarChart3,
+  MessageSquareHeart,
+  Settings,
+  Compass,
+  ListTree,
+  FileStack,
+  Inbox,
+} from "lucide-react";
+
+export const AGENCY_NAV = [
+  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Clients", href: "/dashboard/clients", icon: Users },
+  { label: "Projects", href: "/dashboard/projects", icon: FolderKanban },
+  { label: "Onboarding", href: "/dashboard/onboarding", icon: ClipboardList },
+  { label: "Contracts", href: "/dashboard/contracts", icon: FileText },
+  { label: "Invoices", href: "/dashboard/invoices", icon: Receipt },
+  { label: "Access Requests", href: "/dashboard/access-requests", icon: KeyRound },
+  { label: "Meetings", href: "/dashboard/meetings", icon: CalendarDays },
+  { label: "Deliverables", href: "/dashboard/deliverables", icon: PackageCheck },
+  { label: "Reports", href: "/dashboard/reports", icon: BarChart3 },
+  { label: "Feedback", href: "/dashboard/feedback", icon: MessageSquareHeart },
+  { label: "Settings", href: "/dashboard/settings", icon: Settings },
+];
+
+export const PORTAL_NAV = [
+  { label: "Overview", href: "/portal", icon: Compass },
+  { label: "Projects", href: "/portal/projects", icon: FolderKanban },
+  { label: "Timeline", href: "/portal/timeline", icon: ListTree },
+  { label: "Meetings", href: "/portal/meetings", icon: CalendarDays },
+  { label: "Deliverables", href: "/portal/deliverables", icon: PackageCheck },
+  { label: "Reports", href: "/portal/reports", icon: BarChart3 },
+  { label: "Documents", href: "/portal/documents", icon: FileStack },
+  { label: "Requests", href: "/portal/requests", icon: Inbox },
+  { label: "Feedback", href: "/portal/feedback", icon: MessageSquareHeart },
+];
