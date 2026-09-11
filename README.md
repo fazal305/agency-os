@@ -7,7 +7,10 @@ wonder "what happens now?"
 
 ## Live demo
 
-_Pending deployment — see [Deployment](#deployment) below._
+**https://agency-os-two-ashen.vercel.app**
+
+Log in with the [demo accounts](#demo-accounts) below to see both the agency
+dashboard and the client portal.
 
 ## Overview
 
@@ -186,8 +189,12 @@ navigating there directly.
 
 ## Deployment
 
-Not yet deployed. Once it is, this section will include the live URL, and the
-GitHub repository's **Website** field will be set to match.
+Deployed on [Vercel](https://vercel.com) at
+[agency-os-two-ashen.vercel.app](https://agency-os-two-ashen.vercel.app),
+connected to the `main` branch. Environment variables (`NEXT_PUBLIC_SUPABASE_URL`,
+`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `NEXT_PUBLIC_SITE_URL`) are set in the
+Vercel project settings — `SUPABASE_SECRET_KEY` is intentionally **not**
+present there; it's only ever used locally to run the seed script.
 
 ## Known limitations
 
@@ -205,6 +212,9 @@ GitHub repository's **Website** field will be set to match.
   client quote.
 - Email (welcome, invoice, meeting confirmation) is not yet sent — Resend is
   wired for configuration but no templates exist yet.
+- No custom Open Graph/social preview image yet — a real one (an actual
+  screenshot of the app) should replace the framework default before this is
+  shared widely; intentionally not using a stock or placeholder image.
 
 ## Roadmap
 
