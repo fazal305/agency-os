@@ -8,7 +8,8 @@ import { DELIVERABLE_STATUS } from "@/lib/workflow-status";
 
 export const metadata = { title: "Dashboard" };
 
-export default async function DashboardPage() {
+export default async function DashboardPage({ searchParams }) {
+  const { denied } = (await searchParams) ?? {};
   const supabase = await createClient();
 
   const [
@@ -75,6 +76,11 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-10">
+      {denied === "role" ? (
+        <p role="alert" className="text-sm text-danger-foreground">
+          You don&rsquo;t have access to that page.
+        </p>
+      ) : null}
       <PageHeader title="Dashboard" description="What needs your attention right now." />
 
       <section className="space-y-3">

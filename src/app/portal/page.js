@@ -9,7 +9,8 @@ import { PROJECT_STATUS } from "@/lib/project-status";
 
 export const metadata = { title: "Overview" };
 
-export default async function PortalOverviewPage() {
+export default async function PortalOverviewPage({ searchParams }) {
+  const { denied } = (await searchParams) ?? {};
   const { profile } = await requireRole("client");
   const supabase = await createClient();
 
@@ -50,6 +51,11 @@ export default async function PortalOverviewPage() {
 
   return (
     <div className="space-y-8">
+      {denied === "role" ? (
+        <p role="alert" className="text-sm text-danger-foreground">
+          You don&rsquo;t have access to that page.
+        </p>
+      ) : null}
       <PageHeader title="Overview" description="Your project at a glance." />
 
       {!hasAnything ? (

@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { Plus, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -28,7 +29,10 @@ export function NewProjectDialog({ clients }) {
     startTransition(async () => {
       const result = await createProject(formData);
       if (result?.error) setError(result.error);
-      else setOpen(false);
+      else {
+        setOpen(false);
+        toast.success("Project created");
+      }
     });
   }
 

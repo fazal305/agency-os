@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { Plus, Loader2, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -46,6 +47,7 @@ export function NewReportDialog({ clients }) {
       else {
         setOpen(false);
         setMetrics([makeMetric()]);
+        toast.success("Report draft saved");
       }
     });
   }

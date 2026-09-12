@@ -9,7 +9,7 @@ import { signIn } from "./actions";
 
 const initialState = { error: null };
 
-export function LoginForm({ supabaseConfigured }) {
+export function LoginForm({ supabaseConfigured, reason }) {
   const [state, formAction, isPending] = useActionState(signIn, initialState);
 
   if (!supabaseConfigured) {
@@ -23,6 +23,11 @@ export function LoginForm({ supabaseConfigured }) {
 
   return (
     <form action={formAction} className="space-y-4">
+      {reason === "session_expired" ? (
+        <p role="alert" className="text-sm text-danger-foreground">
+          Your session expired — please sign in again.
+        </p>
+      ) : null}
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
         <Input id="email" name="email" type="email" autoComplete="email" required />

@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { Plus, Loader2, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,6 +42,7 @@ export function NewInvoiceDialog({ clients }) {
       } else {
         setOpen(false);
         setLineItems([makeLineItem()]);
+        toast.success("Invoice created");
       }
     });
   }

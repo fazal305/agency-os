@@ -21,7 +21,7 @@ export async function requireRole(role) {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect("/login");
+    redirect("/login?reason=session_expired");
   }
 
   const { data: profile } = await supabase
@@ -31,7 +31,7 @@ export async function requireRole(role) {
     .single();
 
   if (profile?.role !== role) {
-    redirect(profile?.role === "admin" ? "/dashboard" : "/portal");
+    redirect(profile?.role === "admin" ? "/dashboard?denied=role" : "/portal?denied=role");
   }
 
   return { user, profile };

@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { Plus, Loader2, Upload } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,7 +36,10 @@ export function NewDeliverableDialog({ clients, projects }) {
     startTransition(async () => {
       const result = await createDeliverable(formData);
       if (result?.error) setError(result.error);
-      else setOpen(false);
+      else {
+        setOpen(false);
+        toast.success("Deliverable uploaded");
+      }
     });
   }
 

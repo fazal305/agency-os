@@ -5,7 +5,9 @@ import { LoginForm } from "./login-form";
 
 export const metadata = { title: "Log in" };
 
-export default async function LoginPage() {
+export default async function LoginPage({ searchParams }) {
+  const { reason } = (await searchParams) ?? {};
+
   if (isSupabaseConfigured) {
     const supabase = await createClient();
     const {
@@ -33,7 +35,7 @@ export default async function LoginPage() {
             Use the email and password your agency contact set up for you.
           </p>
         </div>
-        <LoginForm supabaseConfigured={isSupabaseConfigured} />
+        <LoginForm supabaseConfigured={isSupabaseConfigured} reason={reason} />
       </div>
     </div>
   );
