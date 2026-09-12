@@ -51,7 +51,10 @@ export default function MarketingHomePage() {
           <div className="mt-8 flex items-center gap-3">
             <Button render={<Link href="/portal" />}>
               Go to client portal
-              <ArrowRight className="size-4" aria-hidden="true" />
+              <ArrowRight
+                className="size-4 transition-transform group-hover/button:translate-x-0.5"
+                aria-hidden="true"
+              />
             </Button>
             <Button render={<Link href="/dashboard" />} variant="outline">
               Agency dashboard
