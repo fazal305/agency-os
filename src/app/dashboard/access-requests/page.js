@@ -69,10 +69,15 @@ export default async function AccessRequestsPage() {
                   {request.owner}
                 </TableCell>
                 <TableCell className="text-muted-foreground">
-                  {request.due_date ? new Date(request.due_date).toLocaleDateString() : "—"}
+                  {request.due_date
+                    ? new Date(request.due_date).toLocaleDateString()
+                    : "—"}
                 </TableCell>
                 <TableCell>
-                  <StatusSelect requestId={request.id} status={request.status} />
+                  <StatusSelect
+                    requestId={request.id}
+                    status={request.status}
+                  />
                 </TableCell>
               </TableRow>
             ))}

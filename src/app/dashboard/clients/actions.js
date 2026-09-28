@@ -13,8 +13,10 @@ export async function createClientRecord(_prevState, formData) {
   const supabase = await createSupabaseClient();
   const { error } = await supabase.from("clients").insert({
     company_name: companyName,
-    primary_contact_name: formData.get("primary_contact_name")?.toString().trim() || null,
-    primary_contact_email: formData.get("primary_contact_email")?.toString().trim() || null,
+    primary_contact_name:
+      formData.get("primary_contact_name")?.toString().trim() || null,
+    primary_contact_email:
+      formData.get("primary_contact_email")?.toString().trim() || null,
     website: formData.get("website")?.toString().trim() || null,
     industry: formData.get("industry")?.toString().trim() || null,
   });

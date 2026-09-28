@@ -31,7 +31,10 @@ export function NewInvoiceDialog({ clients }) {
   const [lineItems, setLineItems] = useState([makeLineItem()]);
   const [isPending, startTransition] = useTransition();
 
-  const total = lineItems.reduce((sum, item) => sum + item.quantity * item.rate, 0);
+  const total = lineItems.reduce(
+    (sum, item) => sum + item.quantity * item.rate,
+    0,
+  );
 
   function handleSubmit(formData) {
     setError(null);
@@ -67,7 +70,9 @@ export function NewInvoiceDialog({ clients }) {
         <form action={handleSubmit} className="space-y-4">
           <DialogHeader>
             <DialogTitle>New invoice</DialogTitle>
-            <DialogDescription>Invoice numbers are assigned automatically.</DialogDescription>
+            <DialogDescription>
+              Invoice numbers are assigned automatically.
+            </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-2">
@@ -87,8 +92,10 @@ export function NewInvoiceDialog({ clients }) {
                     onChange={(e) =>
                       setLineItems((items) =>
                         items.map((it, i) =>
-                          i === index ? { ...it, description: e.target.value } : it
-                        )
+                          i === index
+                            ? { ...it, description: e.target.value }
+                            : it,
+                        ),
                       )
                     }
                     required
@@ -103,8 +110,10 @@ export function NewInvoiceDialog({ clients }) {
                     onChange={(e) =>
                       setLineItems((items) =>
                         items.map((it, i) =>
-                          i === index ? { ...it, quantity: Number(e.target.value) || 0 } : it
-                        )
+                          i === index
+                            ? { ...it, quantity: Number(e.target.value) || 0 }
+                            : it,
+                        ),
                       )
                     }
                     className="w-16"
@@ -119,8 +128,10 @@ export function NewInvoiceDialog({ clients }) {
                     onChange={(e) =>
                       setLineItems((items) =>
                         items.map((it, i) =>
-                          i === index ? { ...it, rate: Number(e.target.value) || 0 } : it
-                        )
+                          i === index
+                            ? { ...it, rate: Number(e.target.value) || 0 }
+                            : it,
+                        ),
                       )
                     }
                     className="w-24"
@@ -132,7 +143,9 @@ export function NewInvoiceDialog({ clients }) {
                     size="icon-sm"
                     onClick={() =>
                       setLineItems((items) =>
-                        items.length > 1 ? items.filter((_, i) => i !== index) : items
+                        items.length > 1
+                          ? items.filter((_, i) => i !== index)
+                          : items,
                       )
                     }
                     aria-label="Remove line item"
@@ -146,7 +159,9 @@ export function NewInvoiceDialog({ clients }) {
               type="button"
               variant="outline"
               size="sm"
-              onClick={() => setLineItems((items) => [...items, makeLineItem()])}
+              onClick={() =>
+                setLineItems((items) => [...items, makeLineItem()])
+              }
             >
               <Plus className="size-3.5" aria-hidden="true" />
               Add line item
@@ -175,10 +190,15 @@ export function NewInvoiceDialog({ clients }) {
 
           <DialogFooter className="items-center justify-between sm:justify-between">
             <p className="text-sm text-muted-foreground">
-              Total: <span className="font-medium text-foreground">${total.toFixed(2)}</span>
+              Total:{" "}
+              <span className="font-medium text-foreground">
+                ${total.toFixed(2)}
+              </span>
             </p>
             <Button type="submit" disabled={isPending}>
-              {isPending ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+              {isPending ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              ) : null}
               Create invoice
             </Button>
           </DialogFooter>

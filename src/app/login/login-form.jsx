@@ -15,8 +15,8 @@ export function LoginForm({ supabaseConfigured, reason }) {
   if (!supabaseConfigured) {
     return (
       <p className="rounded-md border border-dashed border-border px-4 py-3 text-sm text-muted-foreground">
-        Login isn&rsquo;t available yet — this environment doesn&rsquo;t have Supabase
-        configured.
+        Login isn&rsquo;t available yet — this environment doesn&rsquo;t have
+        Supabase configured.
       </p>
     );
   }
@@ -30,7 +30,13 @@ export function LoginForm({ supabaseConfigured, reason }) {
       ) : null}
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" type="email" autoComplete="email" required />
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+        />
       </div>
       <div className="space-y-2">
         <Label htmlFor="password">Password</Label>
@@ -48,7 +54,9 @@ export function LoginForm({ supabaseConfigured, reason }) {
         </p>
       ) : null}
       <Button type="submit" className="w-full" disabled={isPending}>
-        {isPending ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+        {isPending ? (
+          <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+        ) : null}
         Log in
       </Button>
     </form>

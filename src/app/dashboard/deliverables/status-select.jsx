@@ -18,10 +18,14 @@ export function StatusSelect({ deliverableId, status }) {
     <Select
       value={status}
       disabled={isPending}
-      onValueChange={(next) => startTransition(() => updateDeliverableStatus(deliverableId, next))}
+      onValueChange={(next) =>
+        startTransition(() => updateDeliverableStatus(deliverableId, next))
+      }
     >
       <SelectTrigger size="sm" className="w-44">
-        <SelectValue>{(value) => DELIVERABLE_STATUS[value]?.label ?? value}</SelectValue>
+        <SelectValue>
+          {(value) => DELIVERABLE_STATUS[value]?.label ?? value}
+        </SelectValue>
       </SelectTrigger>
       <SelectContent>
         {Object.entries(DELIVERABLE_STATUS).map(([value, { label }]) => (

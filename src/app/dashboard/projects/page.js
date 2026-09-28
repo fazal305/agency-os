@@ -61,11 +61,15 @@ export default async function ProjectsPage() {
           </TableHeader>
           <TableBody>
             {projects.map((project) => {
-              const status = PROJECT_STATUS[project.status] ?? PROJECT_STATUS.discovery;
+              const status =
+                PROJECT_STATUS[project.status] ?? PROJECT_STATUS.discovery;
               return (
                 <TableRow key={project.id}>
                   <TableCell className="font-medium">
-                    <Link href={`/dashboard/projects/${project.id}`} className="hover:underline">
+                    <Link
+                      href={`/dashboard/projects/${project.id}`}
+                      className="hover:underline"
+                    >
                       {project.name}
                     </Link>
                   </TableCell>

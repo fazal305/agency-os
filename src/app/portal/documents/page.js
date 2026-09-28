@@ -14,35 +14,45 @@ export default async function PortalDocumentsPage() {
   const { profile } = await requireRole("client");
   const supabase = await createClient();
 
-  const [{ data: clientRow }, { data: contracts }, { data: invoices }] = await Promise.all([
-    supabase.from("clients").select("welcome_sent_at, company_name").eq("id", profile.client_id).single(),
-    supabase
-      .from("contracts")
-      .select("id, title, status, signed_at")
-      .eq("client_id", profile.client_id)
-      .neq("status", "draft")
-      .order("created_at", { ascending: false }),
-    supabase
-      .from("invoices")
-      .select("id, invoice_number, status, due_date, payment_instructions, invoice_line_items(quantity, rate)")
-      .eq("client_id", profile.client_id)
-      .neq("status", "draft")
-      .order("created_at", { ascending: false }),
-  ]);
+  const [{ data: clientRow }, { data: contracts }, { data: invoices }] =
+    await Promise.all([
+      supabase
+        .from("clients")
+        .select("welcome_sent_at, company_name")
+        .eq("id", profile.client_id)
+        .single(),
+      supabase
+        .from("contracts")
+        .select("id, title, status, signed_at")
+        .eq("client_id", profile.client_id)
+        .neq("status", "draft")
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("invoices")
+        .select(
+          "id, invoice_number, status, due_date, payment_instructions, invoice_line_items(quantity, rate)",
+        )
+        .eq("client_id", profile.client_id)
+        .neq("status", "draft")
+        .order("created_at", { ascending: false }),
+    ]);
 
   return (
     <div className="space-y-10">
-      <PageHeader title="Documents" description="Your welcome guide, agreements, and invoices." />
+      <PageHeader
+        title="Documents"
+        description="Your welcome guide, agreements, and invoices."
+      />
 
       <section className="space-y-3">
         <h2 className="font-heading text-lg tracking-tight">Welcome</h2>
         {clientRow?.welcome_sent_at ? (
           <div className="space-y-3 rounded-lg border border-border p-6 text-sm text-muted-foreground">
             <p>
-              Welcome to working with us, {clientRow.company_name}. Here&rsquo;s what to expect:
-              we&rsquo;ll keep you updated at every stage, ask for your input at clear
-              checkpoints, and use this portal as the single place to track progress,
-              deliverables, and reports.
+              Welcome to working with us, {clientRow.company_name}. Here&rsquo;s
+              what to expect: we&rsquo;ll keep you updated at every stage, ask
+              for your input at clear checkpoints, and use this portal as the
+              single place to track progress, deliverables, and reports.
             </p>
             <p>
               Use <strong>Requests</strong> to see what we need from you,{" "}
@@ -70,9 +80,13 @@ export default async function PortalDocumentsPage() {
         ) : (
           <ul className="divide-y divide-border rounded-lg border border-border">
             {contracts.map((contract) => {
-              const status = CONTRACT_STATUS[contract.status] ?? CONTRACT_STATUS.draft;
+              const status =
+                CONTRACT_STATUS[contract.status] ?? CONTRACT_STATUS.draft;
               return (
-                <li key={contract.id} className="flex items-center justify-between px-4 py-3">
+                <li
+                  key={contract.id}
+                  className="flex items-center justify-between px-4 py-3"
+                >
                   <Link
                     href={`/portal/documents/contracts/${contract.id}`}
                     className="text-sm font-medium hover:underline"
@@ -99,11 +113,17 @@ export default async function PortalDocumentsPage() {
           <ul className="divide-y divide-border rounded-lg border border-border">
             {invoices.map((invoice) => {
               const displayStatus = displayInvoiceStatus(invoice);
-              const status = INVOICE_STATUS[displayStatus] ?? INVOICE_STATUS.draft;
+              const status =
+                INVOICE_STATUS[displayStatus] ?? INVOICE_STATUS.draft;
               return (
-                <li key={invoice.id} className="flex items-center justify-between px-4 py-3">
+                <li
+                  key={invoice.id}
+                  className="flex items-center justify-between px-4 py-3"
+                >
                   <div>
-                    <p className="text-sm font-medium">{invoice.invoice_number}</p>
+                    <p className="text-sm font-medium">
+                      {invoice.invoice_number}
+                    </p>
                     <p className="text-xs text-muted-foreground">
                       ${invoiceTotal(invoice.invoice_line_items).toFixed(2)}
                       {invoice.due_date

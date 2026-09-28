@@ -27,7 +27,9 @@ export function Milestones({ projectId, milestones }) {
               type="checkbox"
               checked={Boolean(milestone.completed_at)}
               onChange={(e) =>
-                startTransition(() => toggleMilestone(milestone.id, projectId, e.target.checked))
+                startTransition(() =>
+                  toggleMilestone(milestone.id, projectId, e.target.checked),
+                )
               }
               className="size-4 rounded border-border"
               aria-label={`Mark "${milestone.title}" complete`}
@@ -54,7 +56,12 @@ export function Milestones({ projectId, milestones }) {
       </ul>
 
       <form action={handleAdd} className="flex items-center gap-2">
-        <Input name="title" placeholder="Add a milestone" className="flex-1" required />
+        <Input
+          name="title"
+          placeholder="Add a milestone"
+          className="flex-1"
+          required
+        />
         <Input name="due_date" type="date" className="w-40" />
         <Button type="submit" variant="outline" size="sm" disabled={isPending}>
           {isPending ? (

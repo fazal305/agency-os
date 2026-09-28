@@ -21,7 +21,10 @@ export async function updateTestimonialStatus(testimonialId, status) {
   if (status === "approved") patch.approved_at = new Date().toISOString();
   if (status === "published") patch.published_at = new Date().toISOString();
 
-  const { error } = await supabase.from("testimonials").update(patch).eq("id", testimonialId);
+  const { error } = await supabase
+    .from("testimonials")
+    .update(patch)
+    .eq("id", testimonialId);
 
   if (error) return { error: "Couldn't update the testimonial." };
   revalidatePath("/dashboard/feedback");

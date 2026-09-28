@@ -9,7 +9,11 @@ export function SendWelcomeButton({ clientId, sent }) {
   const [isPending, startTransition] = useTransition();
 
   if (sent) {
-    return <span className="text-xs text-muted-foreground">Sent {new Date(sent).toLocaleDateString()}</span>;
+    return (
+      <span className="text-xs text-muted-foreground">
+        Sent {new Date(sent).toLocaleDateString()}
+      </span>
+    );
   }
 
   return (

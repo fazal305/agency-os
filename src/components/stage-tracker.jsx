@@ -19,7 +19,7 @@ export function StageTracker({ steps, currentIndex }) {
                 "flex size-5 shrink-0 items-center justify-center rounded-full border text-xs",
                 isDone && "border-success bg-success text-success-foreground",
                 isCurrent && "border-brand bg-brand text-brand-foreground",
-                !isDone && !isCurrent && "border-border text-transparent"
+                !isDone && !isCurrent && "border-border text-transparent",
               )}
               aria-hidden="true"
             >
@@ -28,11 +28,15 @@ export function StageTracker({ steps, currentIndex }) {
             <span
               className={cn(
                 "text-sm",
-                isCurrent ? "font-medium text-foreground" : "text-muted-foreground"
+                isCurrent
+                  ? "font-medium text-foreground"
+                  : "text-muted-foreground",
               )}
             >
               {step}
-              {isCurrent ? <span className="sr-only"> (current stage)</span> : null}
+              {isCurrent ? (
+                <span className="sr-only"> (current stage)</span>
+              ) : null}
               {isDone ? <span className="sr-only"> (complete)</span> : null}
             </span>
           </li>

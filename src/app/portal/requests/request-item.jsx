@@ -21,7 +21,9 @@ export function RequestItem({ request }) {
         <div>
           <p className="text-sm font-medium">{request.item}</p>
           {request.description ? (
-            <p className="mt-0.5 text-sm text-muted-foreground">{request.description}</p>
+            <p className="mt-0.5 text-sm text-muted-foreground">
+              {request.description}
+            </p>
           ) : null}
           {request.due_date ? (
             <p className="mt-0.5 text-xs text-muted-foreground">
@@ -56,7 +58,9 @@ export function RequestItem({ request }) {
               })
             }
           >
-            {isPending ? <Loader2 className="size-3.5 animate-spin" aria-hidden="true" /> : null}
+            {isPending ? (
+              <Loader2 className="size-3.5 animate-spin" aria-hidden="true" />
+            ) : null}
             Mark as submitted
           </Button>
         </div>

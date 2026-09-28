@@ -12,7 +12,11 @@ export default async function PortalFeedbackPage() {
   const supabase = await createClient();
 
   const [{ data: clientRow }, { data: existing }] = await Promise.all([
-    supabase.from("clients").select("feedback_requested_at").eq("id", profile.client_id).single(),
+    supabase
+      .from("clients")
+      .select("feedback_requested_at")
+      .eq("id", profile.client_id)
+      .single(),
     supabase
       .from("feedback")
       .select("id, overall_rating, created_at")
@@ -24,7 +28,10 @@ export default async function PortalFeedbackPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Feedback" description="We'd love to hear how things went." />
+      <PageHeader
+        title="Feedback"
+        description="We'd love to hear how things went."
+      />
 
       {existing ? (
         <div className="rounded-lg border border-border p-6 text-sm text-muted-foreground">

@@ -10,7 +10,11 @@ export function RatingField({ name, label, defaultValue = 0 }) {
   return (
     <fieldset className="space-y-1.5">
       <legend className="text-sm font-medium text-foreground">{label}</legend>
-      <div className="flex items-center gap-1" role="radiogroup" aria-label={label}>
+      <div
+        className="flex items-center gap-1"
+        role="radiogroup"
+        aria-label={label}
+      >
         {[1, 2, 3, 4, 5].map((n) => (
           <label key={n} className="cursor-pointer">
             <input
@@ -25,7 +29,9 @@ export function RatingField({ name, label, defaultValue = 0 }) {
             <Star
               className={cn(
                 "size-6",
-                n <= value ? "fill-warning-foreground text-warning-foreground" : "text-muted-foreground"
+                n <= value
+                  ? "fill-warning-foreground text-warning-foreground"
+                  : "text-muted-foreground",
               )}
             />
           </label>

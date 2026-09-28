@@ -21,7 +21,9 @@ export default async function MeetingsPage() {
   const [{ data: meetings, error }, clients] = await Promise.all([
     supabase
       .from("meetings")
-      .select("id, title, type, scheduled_at, meeting_link, clients(company_name)")
+      .select(
+        "id, title, type, scheduled_at, meeting_link, clients(company_name)",
+      )
       .order("scheduled_at", { ascending: true }),
     getClientOptions(),
   ]);

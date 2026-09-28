@@ -68,7 +68,12 @@ export function NewContractDialog({ clients }) {
           </div>
           <div className="space-y-2">
             <Label htmlFor="title">Title</Label>
-            <Input id="title" name="title" placeholder="Services Agreement" required />
+            <Input
+              id="title"
+              name="title"
+              placeholder="Services Agreement"
+              required
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="scope_summary">Scope of work</Label>
@@ -85,7 +90,11 @@ export function NewContractDialog({ clients }) {
             </div>
             <div className="space-y-2">
               <Label htmlFor="payment_terms">Payment terms</Label>
-              <Input id="payment_terms" name="payment_terms" placeholder="50% upfront" />
+              <Input
+                id="payment_terms"
+                name="payment_terms"
+                placeholder="50% upfront"
+              />
             </div>
           </div>
 
@@ -97,7 +106,9 @@ export function NewContractDialog({ clients }) {
 
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+              {isPending ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              ) : null}
               Create draft
             </Button>
           </DialogFooter>

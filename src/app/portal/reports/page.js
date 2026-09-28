@@ -19,7 +19,10 @@ export default async function PortalReportsPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Reports" description="How things are performing, month by month." />
+      <PageHeader
+        title="Reports"
+        description="How things are performing, month by month."
+      />
 
       {!reports?.length ? (
         <EmptyState

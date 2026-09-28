@@ -2,7 +2,8 @@ import { StatusBadge } from "@/components/status-badge";
 import { PERFORMANCE_STATUS } from "@/lib/workflow-status";
 
 export function MetricCard({ metric }) {
-  const performance = PERFORMANCE_STATUS[metric.performance] ?? PERFORMANCE_STATUS.on_target;
+  const performance =
+    PERFORMANCE_STATUS[metric.performance] ?? PERFORMANCE_STATUS.on_target;
   const delta =
     metric.previous_value != null ? metric.value - metric.previous_value : null;
 
@@ -11,7 +12,9 @@ export function MetricCard({ metric }) {
       <p className="text-sm text-muted-foreground">{metric.label}</p>
       <p className="font-heading text-2xl tracking-tight">
         {metric.value}
-        {metric.unit ? <span className="text-base text-muted-foreground">{metric.unit}</span> : null}
+        {metric.unit ? (
+          <span className="text-base text-muted-foreground">{metric.unit}</span>
+        ) : null}
       </p>
       {delta !== null ? (
         <p className="text-xs text-muted-foreground">

@@ -24,7 +24,9 @@ export default async function DeliverablesPage() {
   const [{ data: deliverables, error }, clients, projects] = await Promise.all([
     supabase
       .from("deliverables")
-      .select("id, title, status, file_path, file_name, version, clients(company_name)")
+      .select(
+        "id, title, status, file_path, file_name, version, clients(company_name)",
+      )
       .order("created_at", { ascending: false }),
     getClientOptions(),
     getProjectOptions(),
@@ -49,7 +51,9 @@ export default async function DeliverablesPage() {
           icon={PackageCheck}
           title="No deliverables yet"
           description="Upload work for a client to move it through review."
-          action={<NewDeliverableDialog clients={clients} projects={projects} />}
+          action={
+            <NewDeliverableDialog clients={clients} projects={projects} />
+          }
         />
       ) : (
         <Table>
@@ -71,8 +75,13 @@ export default async function DeliverablesPage() {
                 <TableCell>
                   {d.file_path ? (
                     <div className="flex items-center gap-1">
-                      <span className="text-sm text-muted-foreground">{d.file_name}</span>
-                      <DownloadButton filePath={d.file_path} getUrlAction={getDownloadUrl} />
+                      <span className="text-sm text-muted-foreground">
+                        {d.file_name}
+                      </span>
+                      <DownloadButton
+                        filePath={d.file_path}
+                        getUrlAction={getDownloadUrl}
+                      />
                     </div>
                   ) : (
                     "—"

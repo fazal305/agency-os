@@ -69,10 +69,15 @@ export function NewReportDialog({ clients }) {
         }
       />
       <DialogContent className="sm:max-w-lg">
-        <form action={handleSubmit} className="max-h-[70vh] space-y-4 overflow-y-auto pr-1">
+        <form
+          action={handleSubmit}
+          className="max-h-[70vh] space-y-4 overflow-y-auto pr-1"
+        >
           <DialogHeader>
             <DialogTitle>New monthly report</DialogTitle>
-            <DialogDescription>Saved as a draft until you publish it.</DialogDescription>
+            <DialogDescription>
+              Saved as a draft until you publish it.
+            </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-2">
@@ -82,7 +87,12 @@ export function NewReportDialog({ clients }) {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="period_start">Period start</Label>
-              <Input id="period_start" name="period_start" type="date" required />
+              <Input
+                id="period_start"
+                name="period_start"
+                type="date"
+                required
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="period_end">Period end</Label>
@@ -94,19 +104,38 @@ export function NewReportDialog({ clients }) {
             <Label>Metrics</Label>
             {metrics.map((metric, index) => (
               <div key={metric.key} className="flex items-center gap-2">
-                <Input name="metric_label[]" placeholder="Opens" className="flex-1" />
-                <Input name="metric_value[]" type="number" step="0.01" className="w-20" aria-label="Value" />
-                <Input name="metric_unit[]" placeholder="%" className="w-14" aria-label="Unit" />
+                <Input
+                  name="metric_label[]"
+                  placeholder="Opens"
+                  className="flex-1"
+                />
+                <Input
+                  name="metric_value[]"
+                  type="number"
+                  step="0.01"
+                  className="w-20"
+                  aria-label="Value"
+                />
+                <Input
+                  name="metric_unit[]"
+                  placeholder="%"
+                  className="w-14"
+                  aria-label="Unit"
+                />
                 <Select name="metric_performance[]" defaultValue="on_target">
                   <SelectTrigger size="sm" className="w-36">
-                    <SelectValue>{(value) => PERFORMANCE_STATUS[value]?.label ?? value}</SelectValue>
+                    <SelectValue>
+                      {(value) => PERFORMANCE_STATUS[value]?.label ?? value}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
-                    {Object.entries(PERFORMANCE_STATUS).map(([value, { label }]) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
-                      </SelectItem>
-                    ))}
+                    {Object.entries(PERFORMANCE_STATUS).map(
+                      ([value, { label }]) => (
+                        <SelectItem key={value} value={value}>
+                          {label}
+                        </SelectItem>
+                      ),
+                    )}
                   </SelectContent>
                 </Select>
                 <Button
@@ -114,7 +143,11 @@ export function NewReportDialog({ clients }) {
                   variant="ghost"
                   size="icon-sm"
                   onClick={() =>
-                    setMetrics((items) => (items.length > 1 ? items.filter((_, i) => i !== index) : items))
+                    setMetrics((items) =>
+                      items.length > 1
+                        ? items.filter((_, i) => i !== index)
+                        : items,
+                    )
                   }
                   aria-label="Remove metric"
                 >
@@ -135,7 +168,11 @@ export function NewReportDialog({ clients }) {
 
           <div className="space-y-2">
             <Label htmlFor="executive_summary">Executive summary</Label>
-            <Textarea id="executive_summary" name="executive_summary" rows={2} />
+            <Textarea
+              id="executive_summary"
+              name="executive_summary"
+              rows={2}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="insights">Insights</Label>
@@ -146,7 +183,9 @@ export function NewReportDialog({ clients }) {
             <Textarea id="recommendations" name="recommendations" rows={2} />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="next_priorities">Next month&rsquo;s priorities</Label>
+            <Label htmlFor="next_priorities">
+              Next month&rsquo;s priorities
+            </Label>
             <Textarea id="next_priorities" name="next_priorities" rows={2} />
           </div>
 
@@ -158,7 +197,9 @@ export function NewReportDialog({ clients }) {
 
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+              {isPending ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              ) : null}
               Save draft
             </Button>
           </DialogFooter>

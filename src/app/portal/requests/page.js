@@ -19,7 +19,10 @@ export default async function PortalRequestsPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Requests" description="What we need from you to get started." />
+      <PageHeader
+        title="Requests"
+        description="What we need from you to get started."
+      />
 
       {!requests?.length ? (
         <EmptyState

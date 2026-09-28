@@ -24,7 +24,9 @@ export default async function ContractsPage() {
   const [{ data: contracts, error }, clients] = await Promise.all([
     supabase
       .from("contracts")
-      .select("id, title, status, created_at, sent_at, signed_at, clients(company_name)")
+      .select(
+        "id, title, status, created_at, sent_at, signed_at, clients(company_name)",
+      )
       .order("created_at", { ascending: false }),
     getClientOptions(),
   ]);
@@ -63,14 +65,18 @@ export default async function ContractsPage() {
           </TableHeader>
           <TableBody>
             {contracts.map((contract) => {
-              const status = CONTRACT_STATUS[contract.status] ?? CONTRACT_STATUS.draft;
+              const status =
+                CONTRACT_STATUS[contract.status] ?? CONTRACT_STATUS.draft;
               return (
                 <TableRow key={contract.id}>
                   <TableCell className="text-muted-foreground">
                     {contract.clients?.company_name ?? "—"}
                   </TableCell>
                   <TableCell className="font-medium">
-                    <Link href={`/dashboard/contracts/${contract.id}`} className="hover:underline">
+                    <Link
+                      href={`/dashboard/contracts/${contract.id}`}
+                      className="hover:underline"
+                    >
                       {contract.title}
                     </Link>
                   </TableCell>

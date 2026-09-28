@@ -25,7 +25,7 @@ export default async function InvoicesPage() {
     supabase
       .from("invoices")
       .select(
-        "id, invoice_number, status, due_date, clients(company_name), invoice_line_items(quantity, rate)"
+        "id, invoice_number, status, due_date, clients(company_name), invoice_line_items(quantity, rate)",
       )
       .order("created_at", { ascending: false }),
     getClientOptions(),
@@ -67,22 +67,32 @@ export default async function InvoicesPage() {
           <TableBody>
             {invoices.map((invoice) => {
               const displayStatus = displayInvoiceStatus(invoice);
-              const status = INVOICE_STATUS[displayStatus] ?? INVOICE_STATUS.draft;
+              const status =
+                INVOICE_STATUS[displayStatus] ?? INVOICE_STATUS.draft;
               return (
                 <TableRow key={invoice.id}>
-                  <TableCell className="font-medium">{invoice.invoice_number}</TableCell>
+                  <TableCell className="font-medium">
+                    {invoice.invoice_number}
+                  </TableCell>
                   <TableCell className="text-muted-foreground">
                     {invoice.clients?.company_name ?? "—"}
                   </TableCell>
                   <TableCell className="text-muted-foreground">
-                    {invoice.due_date ? new Date(invoice.due_date).toLocaleDateString() : "—"}
+                    {invoice.due_date
+                      ? new Date(invoice.due_date).toLocaleDateString()
+                      : "—"}
                   </TableCell>
-                  <TableCell>${invoiceTotal(invoice.invoice_line_items).toFixed(2)}</TableCell>
+                  <TableCell>
+                    ${invoiceTotal(invoice.invoice_line_items).toFixed(2)}
+                  </TableCell>
                   <TableCell>
                     <StatusBadge tone={status.tone} label={status.label} />
                   </TableCell>
                   <TableCell className="text-right">
-                    <InvoiceActions invoiceId={invoice.id} status={invoice.status} />
+                    <InvoiceActions
+                      invoiceId={invoice.id}
+                      status={invoice.status}
+                    />
                   </TableCell>
                 </TableRow>
               );

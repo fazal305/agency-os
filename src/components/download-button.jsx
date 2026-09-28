@@ -16,7 +16,8 @@ export function DownloadButton({ filePath, getUrlAction }) {
       onClick={() =>
         startTransition(async () => {
           const result = await getUrlAction(filePath);
-          if (result?.url) window.open(result.url, "_blank", "noopener,noreferrer");
+          if (result?.url)
+            window.open(result.url, "_blank", "noopener,noreferrer");
         })
       }
     >

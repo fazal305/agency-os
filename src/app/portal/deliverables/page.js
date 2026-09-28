@@ -23,7 +23,10 @@ export default async function PortalDeliverablesPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Deliverables" description="Work ready for your review." />
+      <PageHeader
+        title="Deliverables"
+        description="Work ready for your review."
+      />
 
       {!deliverables?.length ? (
         <EmptyState
@@ -34,14 +37,20 @@ export default async function PortalDeliverablesPage() {
       ) : (
         <ul className="space-y-4">
           {deliverables.map((d) => {
-            const status = DELIVERABLE_STATUS[d.status] ?? DELIVERABLE_STATUS.client_review;
+            const status =
+              DELIVERABLE_STATUS[d.status] ?? DELIVERABLE_STATUS.client_review;
             return (
-              <li key={d.id} className="space-y-3 rounded-lg border border-border p-5">
+              <li
+                key={d.id}
+                className="space-y-3 rounded-lg border border-border p-5"
+              >
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="font-medium">{d.title}</p>
                     {d.description ? (
-                      <p className="mt-1 text-sm text-muted-foreground">{d.description}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {d.description}
+                      </p>
                     ) : null}
                   </div>
                   <StatusBadge tone={status.tone} label={status.label} />
@@ -49,7 +58,10 @@ export default async function PortalDeliverablesPage() {
                 {d.file_path ? (
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     {d.file_name}
-                    <DownloadButton filePath={d.file_path} getUrlAction={getDownloadUrl} />
+                    <DownloadButton
+                      filePath={d.file_path}
+                      getUrlAction={getDownloadUrl}
+                    />
                   </div>
                 ) : null}
                 {d.status === "client_review" ? (

@@ -32,7 +32,10 @@ export default async function PortalContractPage({ params }) {
         title={contract.title}
         actions={<StatusBadge tone={status.tone} label={status.label} />}
       />
-      <ContractDocument contract={contract} clientName={contract.clients?.company_name} />
+      <ContractDocument
+        contract={contract}
+        clientName={contract.clients?.company_name}
+      />
       {canSign ? <SignContractForm contractId={contract.id} /> : null}
     </div>
   );

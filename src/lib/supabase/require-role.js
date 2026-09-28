@@ -31,7 +31,11 @@ export async function requireRole(role) {
     .single();
 
   if (profile?.role !== role) {
-    redirect(profile?.role === "admin" ? "/dashboard?denied=role" : "/portal?denied=role");
+    redirect(
+      profile?.role === "admin"
+        ? "/dashboard?denied=role"
+        : "/portal?denied=role",
+    );
   }
 
   return { user, profile };

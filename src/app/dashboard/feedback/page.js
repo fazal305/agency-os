@@ -19,29 +19,46 @@ export const metadata = { title: "Feedback" };
 
 export default async function FeedbackPage() {
   const supabase = await createClient();
-  const [{ data: clients }, { data: feedback }, { data: testimonials }] = await Promise.all([
-    supabase.from("clients").select("id, company_name, feedback_requested_at").order("company_name"),
-    supabase
-      .from("feedback")
-      .select("id, overall_rating, improvement_notes, created_at, clients(company_name)")
-      .order("created_at", { ascending: false }),
-    supabase
-      .from("testimonials")
-      .select("id, quote, author_name, status, clients(company_name)")
-      .order("created_at", { ascending: false }),
-  ]);
+  const [{ data: clients }, { data: feedback }, { data: testimonials }] =
+    await Promise.all([
+      supabase
+        .from("clients")
+        .select("id, company_name, feedback_requested_at")
+        .order("company_name"),
+      supabase
+        .from("feedback")
+        .select(
+          "id, overall_rating, improvement_notes, created_at, clients(company_name)",
+        )
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("testimonials")
+        .select("id, quote, author_name, status, clients(company_name)")
+        .order("created_at", { ascending: false }),
+    ]);
 
   return (
     <div className="space-y-10">
-      <PageHeader title="Feedback" description="Requests, responses, and testimonials." />
+      <PageHeader
+        title="Feedback"
+        description="Requests, responses, and testimonials."
+      />
 
       <section className="space-y-3">
-        <h2 className="font-heading text-lg tracking-tight">Request feedback</h2>
+        <h2 className="font-heading text-lg tracking-tight">
+          Request feedback
+        </h2>
         <ul className="divide-y divide-border rounded-lg border border-border">
           {(clients ?? []).map((client) => (
-            <li key={client.id} className="flex items-center justify-between px-4 py-3">
+            <li
+              key={client.id}
+              className="flex items-center justify-between px-4 py-3"
+            >
               <span className="text-sm font-medium">{client.company_name}</span>
-              <RequestFeedbackButton clientId={client.id} requested={client.feedback_requested_at} />
+              <RequestFeedbackButton
+                clientId={client.id}
+                requested={client.feedback_requested_at}
+              />
             </li>
           ))}
         </ul>
@@ -70,7 +87,9 @@ export default async function FeedbackPage() {
                   <TableCell className="text-muted-foreground">
                     {f.clients?.company_name ?? "—"}
                   </TableCell>
-                  <TableCell className="font-medium">{f.overall_rating}/5</TableCell>
+                  <TableCell className="font-medium">
+                    {f.overall_rating}/5
+                  </TableCell>
                   <TableCell className="max-w-sm truncate text-muted-foreground">
                     {f.improvement_notes || "—"}
                   </TableCell>
@@ -92,9 +111,13 @@ export default async function FeedbackPage() {
         ) : (
           <ul className="space-y-3">
             {testimonials.map((t) => {
-              const status = TESTIMONIAL_STATUS[t.status] ?? TESTIMONIAL_STATUS.submitted;
+              const status =
+                TESTIMONIAL_STATUS[t.status] ?? TESTIMONIAL_STATUS.submitted;
               return (
-                <li key={t.id} className="space-y-2 rounded-lg border border-border p-4">
+                <li
+                  key={t.id}
+                  className="space-y-2 rounded-lg border border-border p-4"
+                >
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="text-sm italic">&ldquo;{t.quote}&rdquo;</p>

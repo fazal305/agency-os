@@ -12,7 +12,10 @@ const NAV_SETS = { agency: AGENCY_NAV, portal: PORTAL_NAV };
 
 function NavLink({ item, pathname, onNavigate }) {
   const isActive =
-    item.href === pathname || (item.href !== "/dashboard" && item.href !== "/portal" && pathname.startsWith(`${item.href}/`));
+    item.href === pathname ||
+    (item.href !== "/dashboard" &&
+      item.href !== "/portal" &&
+      pathname.startsWith(`${item.href}/`));
   const Icon = item.icon;
 
   return (
@@ -24,7 +27,7 @@ function NavLink({ item, pathname, onNavigate }) {
         "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
         isActive
           ? "bg-sidebar-accent text-sidebar-accent-foreground"
-          : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+          : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
       )}
     >
       <Icon className="size-4 shrink-0" aria-hidden="true" />
@@ -39,7 +42,13 @@ function NavLink({ item, pathname, onNavigate }) {
  * drawer, active link state) is identical between the two areas by design —
  * the client should recognize the same structure the agency team works in.
  */
-export function AppShell({ navKey, brandLabel, brandHref, userLabel, children }) {
+export function AppShell({
+  navKey,
+  brandLabel,
+  brandHref,
+  userLabel,
+  children,
+}) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const nav = NAV_SETS[navKey];
@@ -51,14 +60,24 @@ export function AppShell({ navKey, brandLabel, brandHref, userLabel, children })
           Agency OS
         </span>
       </Link>
-      <nav className="flex flex-1 flex-col gap-1 px-2" aria-label={`${brandLabel} navigation`}>
+      <nav
+        className="flex flex-1 flex-col gap-1 px-2"
+        aria-label={`${brandLabel} navigation`}
+      >
         {nav.map((item) => (
-          <NavLink key={item.href} item={item} pathname={pathname} onNavigate={() => setMobileOpen(false)} />
+          <NavLink
+            key={item.href}
+            item={item}
+            pathname={pathname}
+            onNavigate={() => setMobileOpen(false)}
+          />
         ))}
       </nav>
       {userLabel ? (
         <div className="flex items-center justify-between gap-2 border-t border-sidebar-border px-3 py-3">
-          <span className="truncate text-sm text-sidebar-foreground/80">{userLabel}</span>
+          <span className="truncate text-sm text-sidebar-foreground/80">
+            {userLabel}
+          </span>
           <form action={signOut}>
             <button
               type="submit"
@@ -111,7 +130,9 @@ export function AppShell({ navKey, brandLabel, brandHref, userLabel, children })
           >
             <Menu className="size-5" />
           </button>
-          <span className="font-heading text-base tracking-tight">Agency OS</span>
+          <span className="font-heading text-base tracking-tight">
+            Agency OS
+          </span>
         </header>
         <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">{children}</main>
       </div>

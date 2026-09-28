@@ -47,7 +47,11 @@ export default async function PortalOverviewPage({ searchParams }) {
       .eq("status", "client_review"),
   ]);
 
-  const hasAnything = project || nextMeeting || pendingRequests?.length || reviewDeliverables?.length;
+  const hasAnything =
+    project ||
+    nextMeeting ||
+    pendingRequests?.length ||
+    reviewDeliverables?.length;
 
   return (
     <div className="space-y-8">
@@ -105,7 +109,9 @@ export default async function PortalOverviewPage({ searchParams }) {
                 <Inbox className="size-4" aria-hidden="true" />
                 Pending requests
               </p>
-              <p className="font-medium">{pendingRequests.length} item(s) need your attention</p>
+              <p className="font-medium">
+                {pendingRequests.length} item(s) need your attention
+              </p>
             </Link>
           ) : null}
 

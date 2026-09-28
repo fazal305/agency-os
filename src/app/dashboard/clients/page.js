@@ -27,7 +27,7 @@ export default async function ClientsPage() {
     const { data, error } = await supabase
       .from("clients")
       .select(
-        "id, company_name, primary_contact_name, primary_contact_email, status, created_at, welcome_sent_at"
+        "id, company_name, primary_contact_name, primary_contact_email, status, created_at, welcome_sent_at",
       )
       .order("created_at", { ascending: false });
 
@@ -77,18 +77,26 @@ export default async function ClientsPage() {
           </TableHeader>
           <TableBody>
             {clients.map((client) => {
-              const status = CLIENT_STATUS[client.status] ?? CLIENT_STATUS.prospect;
+              const status =
+                CLIENT_STATUS[client.status] ?? CLIENT_STATUS.prospect;
               return (
                 <TableRow key={client.id}>
-                  <TableCell className="font-medium">{client.company_name}</TableCell>
+                  <TableCell className="font-medium">
+                    {client.company_name}
+                  </TableCell>
                   <TableCell className="text-muted-foreground">
-                    {client.primary_contact_name || client.primary_contact_email || "—"}
+                    {client.primary_contact_name ||
+                      client.primary_contact_email ||
+                      "—"}
                   </TableCell>
                   <TableCell>
                     <StatusBadge tone={status.tone} label={status.label} />
                   </TableCell>
                   <TableCell>
-                    <SendWelcomeButton clientId={client.id} sent={client.welcome_sent_at} />
+                    <SendWelcomeButton
+                      clientId={client.id}
+                      sent={client.welcome_sent_at}
+                    />
                   </TableCell>
                 </TableRow>
               );

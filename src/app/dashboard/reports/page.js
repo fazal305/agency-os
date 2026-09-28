@@ -71,11 +71,15 @@ export default async function ReportsPage() {
                 <TableCell>
                   <StatusBadge
                     tone={report.status === "published" ? "success" : "neutral"}
-                    label={report.status === "published" ? "Published" : "Draft"}
+                    label={
+                      report.status === "published" ? "Published" : "Draft"
+                    }
                   />
                 </TableCell>
                 <TableCell className="text-right">
-                  {report.status === "draft" ? <PublishButton reportId={report.id} /> : null}
+                  {report.status === "draft" ? (
+                    <PublishButton reportId={report.id} />
+                  ) : null}
                 </TableCell>
               </TableRow>
             ))}

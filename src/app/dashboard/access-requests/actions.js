@@ -28,7 +28,10 @@ export async function createAccessRequest(formData) {
 
 export async function updateAccessRequestStatus(id, status) {
   const supabase = await createClient();
-  const { error } = await supabase.from("access_requests").update({ status }).eq("id", id);
+  const { error } = await supabase
+    .from("access_requests")
+    .update({ status })
+    .eq("id", id);
 
   if (error) return { error: "Couldn't update the status." };
   revalidatePath("/dashboard/access-requests");

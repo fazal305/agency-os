@@ -110,7 +110,9 @@ export function NewRequestDialog({ clients }) {
 
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+              {isPending ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              ) : null}
               Add item
             </Button>
           </DialogFooter>

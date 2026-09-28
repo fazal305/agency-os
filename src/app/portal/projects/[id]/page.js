@@ -51,10 +51,20 @@ export default async function PortalProjectDetailPage({ params }) {
           <ul className="space-y-2">
             {milestones.map((m) => (
               <li key={m.id} className="flex items-center gap-2 text-sm">
-                <span className={m.completed_at ? "text-success-foreground" : "text-muted-foreground"}>
+                <span
+                  className={
+                    m.completed_at
+                      ? "text-success-foreground"
+                      : "text-muted-foreground"
+                  }
+                >
                   {m.completed_at ? "✓" : "○"}
                 </span>
-                <span className={m.completed_at ? "text-muted-foreground line-through" : ""}>
+                <span
+                  className={
+                    m.completed_at ? "text-muted-foreground line-through" : ""
+                  }
+                >
                   {m.title}
                 </span>
               </li>

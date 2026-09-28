@@ -7,7 +7,8 @@ export async function createProject(formData) {
   const clientId = formData.get("client_id")?.toString();
   const name = formData.get("name")?.toString().trim();
 
-  if (!clientId || !name) return { error: "Client and project name are required." };
+  if (!clientId || !name)
+    return { error: "Client and project name are required." };
 
   const supabase = await createClient();
   const { error } = await supabase.from("projects").insert({
@@ -26,7 +27,10 @@ export async function createProject(formData) {
 
 export async function updateProjectStatus(projectId, status) {
   const supabase = await createClient();
-  const { error } = await supabase.from("projects").update({ status }).eq("id", projectId);
+  const { error } = await supabase
+    .from("projects")
+    .update({ status })
+    .eq("id", projectId);
 
   if (error) return { error: "Couldn't update the project." };
   revalidatePath("/dashboard/projects");

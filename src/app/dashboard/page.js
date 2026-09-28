@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { ClipboardList, CalendarDays, PackageCheck, BarChart3, ArrowRight } from "lucide-react";
+import {
+  ClipboardList,
+  CalendarDays,
+  PackageCheck,
+  BarChart3,
+  ArrowRight,
+} from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { EmptyState } from "@/components/empty-state";
 import { StatusBadge } from "@/components/status-badge";
@@ -81,10 +87,15 @@ export default async function DashboardPage({ searchParams }) {
           You don&rsquo;t have access to that page.
         </p>
       ) : null}
-      <PageHeader title="Dashboard" description="What needs your attention right now." />
+      <PageHeader
+        title="Dashboard"
+        description="What needs your attention right now."
+      />
 
       <section className="space-y-3">
-        <h2 className="font-heading text-lg tracking-tight">Pending client actions</h2>
+        <h2 className="font-heading text-lg tracking-tight">
+          Pending client actions
+        </h2>
         {pendingActions.length === 0 ? (
           <EmptyState
             icon={ClipboardList}
@@ -101,9 +112,15 @@ export default async function DashboardPage({ searchParams }) {
                 >
                   <span>
                     <span className="font-medium">{action.label}</span>
-                    <span className="text-muted-foreground"> · {action.detail}</span>
+                    <span className="text-muted-foreground">
+                      {" "}
+                      · {action.detail}
+                    </span>
                   </span>
-                  <ArrowRight className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                  <ArrowRight
+                    className="size-4 shrink-0 text-muted-foreground"
+                    aria-hidden="true"
+                  />
                 </Link>
               </li>
             ))}
@@ -129,7 +146,8 @@ export default async function DashboardPage({ searchParams }) {
                 <li key={m.id} className="px-4 py-3 text-sm">
                   <p className="font-medium">{m.title}</p>
                   <p className="text-muted-foreground">
-                    {m.clients?.company_name} · {new Date(m.scheduled_at).toLocaleString()}
+                    {m.clients?.company_name} ·{" "}
+                    {new Date(m.scheduled_at).toLocaleString()}
                   </p>
                 </li>
               ))}
@@ -151,12 +169,19 @@ export default async function DashboardPage({ searchParams }) {
           ) : (
             <ul className="divide-y divide-border rounded-lg border border-border">
               {recentDeliverables.map((d) => {
-                const status = DELIVERABLE_STATUS[d.status] ?? DELIVERABLE_STATUS.draft;
+                const status =
+                  DELIVERABLE_STATUS[d.status] ?? DELIVERABLE_STATUS.draft;
                 return (
-                  <li key={d.id} className="flex items-center justify-between px-4 py-3 text-sm">
+                  <li
+                    key={d.id}
+                    className="flex items-center justify-between px-4 py-3 text-sm"
+                  >
                     <span>
                       <span className="font-medium">{d.title}</span>
-                      <span className="text-muted-foreground"> · {d.clients?.company_name}</span>
+                      <span className="text-muted-foreground">
+                        {" "}
+                        · {d.clients?.company_name}
+                      </span>
                     </span>
                     <StatusBadge tone={status.tone} label={status.label} />
                   </li>
@@ -181,7 +206,10 @@ export default async function DashboardPage({ searchParams }) {
         ) : (
           <ul className="divide-y divide-border rounded-lg border border-border">
             {recentReports.map((r) => (
-              <li key={r.id} className="flex items-center justify-between px-4 py-3 text-sm">
+              <li
+                key={r.id}
+                className="flex items-center justify-between px-4 py-3 text-sm"
+              >
                 <span>
                   <span className="font-medium">{r.clients?.company_name}</span>
                   <span className="text-muted-foreground">

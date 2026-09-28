@@ -15,11 +15,13 @@ export async function submitFeedback(formData) {
     .from("feedback")
     .insert({
       client_id: profile.client_id,
-      communication_rating: Number(formData.get("communication_rating")) || null,
+      communication_rating:
+        Number(formData.get("communication_rating")) || null,
       quality_rating: Number(formData.get("quality_rating")) || null,
       timeline_rating: Number(formData.get("timeline_rating")) || null,
       overall_rating: Number(formData.get("overall_rating")) || null,
-      improvement_notes: formData.get("improvement_notes")?.toString().trim() || null,
+      improvement_notes:
+        formData.get("improvement_notes")?.toString().trim() || null,
       wants_testimonial: wantsTestimonial,
     })
     .select("id")

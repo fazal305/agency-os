@@ -32,10 +32,16 @@ export default function SettingsPage() {
 
   return (
     <div className="max-w-xl space-y-6">
-      <PageHeader title="Settings" description="Integration status for this environment." />
+      <PageHeader
+        title="Settings"
+        description="Integration status for this environment."
+      />
       <ul className="divide-y divide-border rounded-lg border border-border">
         {rows.map((row) => (
-          <li key={row.label} className="flex items-center justify-between gap-4 px-4 py-4">
+          <li
+            key={row.label}
+            className="flex items-center justify-between gap-4 px-4 py-4"
+          >
             <div>
               <p className="text-sm font-medium">{row.label}</p>
               <p className="text-sm text-muted-foreground">{row.detail}</p>

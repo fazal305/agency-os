@@ -63,7 +63,9 @@ export function NewDeliverableDialog({ clients, projects }) {
         <form action={handleSubmit} className="space-y-4">
           <DialogHeader>
             <DialogTitle>Upload a deliverable</DialogTitle>
-            <DialogDescription>Starts as a draft, visible only internally.</DialogDescription>
+            <DialogDescription>
+              Starts as a draft, visible only internally.
+            </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-2">
@@ -78,7 +80,9 @@ export function NewDeliverableDialog({ clients, projects }) {
                   <SelectValue placeholder="None">
                     {(value) => {
                       const project = projects.find((p) => p.id === value);
-                      return project ? `${project.name} — ${project.clients?.company_name}` : "None";
+                      return project
+                        ? `${project.name} — ${project.clients?.company_name}`
+                        : "None";
                     }}
                   </SelectValue>
                 </SelectTrigger>
@@ -114,7 +118,9 @@ export function NewDeliverableDialog({ clients, projects }) {
 
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+              {isPending ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              ) : null}
               Upload
             </Button>
           </DialogFooter>

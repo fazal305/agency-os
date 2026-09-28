@@ -6,22 +6,26 @@ const STEPS = [
   {
     number: "01",
     title: "Contract",
-    description: "A clear services agreement covering scope, timeline, and payment terms before anything starts.",
+    description:
+      "A clear services agreement covering scope, timeline, and payment terms before anything starts.",
   },
   {
     number: "02",
     title: "Onboarding",
-    description: "A welcome document, invoice, and a short checklist of exactly what we need from you.",
+    description:
+      "A welcome document, invoice, and a short checklist of exactly what we need from you.",
   },
   {
     number: "03",
     title: "Delivery",
-    description: "Work happens in the open — a shared timeline, deliverables for review, and a kickoff call to start.",
+    description:
+      "Work happens in the open — a shared timeline, deliverables for review, and a kickoff call to start.",
   },
   {
     number: "04",
     title: "Reporting",
-    description: "Monthly reports on what shipped and how it performed, followed by a short feedback check-in.",
+    description:
+      "Monthly reports on what shipped and how it performed, followed by a short feedback check-in.",
   },
 ];
 
@@ -44,9 +48,9 @@ export default function MarketingHomePage() {
             A structured process from signed contract to delivered work.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Every client gets the same clear path: contract, onboarding, a shared
-            portal to track progress, and reporting on what actually happened —
-            no guessing what comes next.
+            Every client gets the same clear path: contract, onboarding, a
+            shared portal to track progress, and reporting on what actually
+            happened — no guessing what comes next.
           </p>
           <div className="mt-8 flex items-center gap-3">
             <Button render={<Link href="/portal" />}>

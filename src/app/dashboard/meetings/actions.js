@@ -22,7 +22,8 @@ export async function createMeeting(formData) {
     notes: formData.get("notes")?.toString().trim() || null,
   });
 
-  if (error) return { error: "Couldn't schedule the meeting. Please try again." };
+  if (error)
+    return { error: "Couldn't schedule the meeting. Please try again." };
 
   revalidatePath("/dashboard/meetings");
   return { success: true };

@@ -1,8 +1,24 @@
 // Executable/script extensions are blocked outright — deliverables are
 // creative/document assets, never something a browser or OS would execute.
 const BLOCKED_EXTENSIONS = new Set([
-  "exe", "msi", "bat", "cmd", "com", "scr", "sh", "bash", "ps1",
-  "js", "mjs", "cjs", "jar", "app", "dmg", "apk", "vbs", "wsf",
+  "exe",
+  "msi",
+  "bat",
+  "cmd",
+  "com",
+  "scr",
+  "sh",
+  "bash",
+  "ps1",
+  "js",
+  "mjs",
+  "cjs",
+  "jar",
+  "app",
+  "dmg",
+  "apk",
+  "vbs",
+  "wsf",
 ]);
 
 const MAX_FILE_BYTES = 25 * 1024 * 1024; // 25MB

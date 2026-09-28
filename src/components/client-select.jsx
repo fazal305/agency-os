@@ -8,12 +8,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function ClientSelect({ clients, name = "client_id", required, defaultValue }) {
+export function ClientSelect({
+  clients,
+  name = "client_id",
+  required,
+  defaultValue,
+}) {
   return (
     <Select name={name} required={required} defaultValue={defaultValue}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Select a client">
-          {(value) => clients.find((c) => c.id === value)?.company_name ?? "Select a client"}
+          {(value) =>
+            clients.find((c) => c.id === value)?.company_name ??
+            "Select a client"
+          }
         </SelectValue>
       </SelectTrigger>
       <SelectContent>

@@ -5,14 +5,20 @@ import { createClient } from "@/lib/supabase/server";
 
 export async function createInvoice(formData) {
   const clientId = formData.get("client_id")?.toString();
-  const descriptions = formData.getAll("description[]").map((v) => v.toString().trim());
+  const descriptions = formData
+    .getAll("description[]")
+    .map((v) => v.toString().trim());
   const quantities = formData.getAll("quantity[]").map((v) => Number(v) || 0);
   const rates = formData.getAll("rate[]").map((v) => Number(v) || 0);
 
   if (!clientId) return { error: "Client is required." };
 
   const lineItems = descriptions
-    .map((description, i) => ({ description, quantity: quantities[i], rate: rates[i] }))
+    .map((description, i) => ({
+      description,
+      quantity: quantities[i],
+      rate: rates[i],
+    }))
     .filter((item) => item.description);
 
   if (lineItems.length === 0) {
@@ -32,7 +38,8 @@ export async function createInvoice(formData) {
       client_id: clientId,
       invoice_number: invoiceNumber,
       due_date: formData.get("due_date")?.toString() || null,
-      payment_instructions: formData.get("payment_instructions")?.toString().trim() || null,
+      payment_instructions:
+        formData.get("payment_instructions")?.toString().trim() || null,
     })
     .select("id")
     .single();
@@ -41,15 +48,17 @@ export async function createInvoice(formData) {
     return { error: "Couldn't create the invoice. Please try again." };
   }
 
-  const { error: lineItemsError } = await supabase.from("invoice_line_items").insert(
-    lineItems.map((item, i) => ({
-      invoice_id: invoice.id,
-      description: item.description,
-      quantity: item.quantity,
-      rate: item.rate,
-      sort_order: i,
-    }))
-  );
+  const { error: lineItemsError } = await supabase
+    .from("invoice_line_items")
+    .insert(
+      lineItems.map((item, i) => ({
+        invoice_id: invoice.id,
+        description: item.description,
+        quantity: item.quantity,
+        rate: item.rate,
+        sort_order: i,
+      })),
+    );
 
   if (lineItemsError) {
     return { error: "Invoice created, but line items failed to save." };

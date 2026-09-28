@@ -56,7 +56,9 @@ export function NewProjectDialog({ clients }) {
         <form action={handleSubmit} className="space-y-4">
           <DialogHeader>
             <DialogTitle>New project</DialogTitle>
-            <DialogDescription>Starts in the Discovery stage.</DialogDescription>
+            <DialogDescription>
+              Starts in the Discovery stage.
+            </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-2">
@@ -90,7 +92,9 @@ export function NewProjectDialog({ clients }) {
 
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+              {isPending ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              ) : null}
               Create project
             </Button>
           </DialogFooter>

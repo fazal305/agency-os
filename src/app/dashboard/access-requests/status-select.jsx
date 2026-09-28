@@ -18,10 +18,14 @@ export function StatusSelect({ requestId, status }) {
     <Select
       value={status}
       disabled={isPending}
-      onValueChange={(next) => startTransition(() => updateAccessRequestStatus(requestId, next))}
+      onValueChange={(next) =>
+        startTransition(() => updateAccessRequestStatus(requestId, next))
+      }
     >
       <SelectTrigger size="sm" className="w-40">
-        <SelectValue>{(value) => ACCESS_STATUS[value]?.label ?? value}</SelectValue>
+        <SelectValue>
+          {(value) => ACCESS_STATUS[value]?.label ?? value}
+        </SelectValue>
       </SelectTrigger>
       <SelectContent>
         {Object.entries(ACCESS_STATUS).map(([value, { label }]) => (

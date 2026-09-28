@@ -10,8 +10,12 @@ export function ContractDocument({ contract, clientName }) {
     <div className="space-y-6 rounded-lg border border-border p-6">
       <div>
         <p className="text-sm text-muted-foreground">Services Agreement</p>
-        <h2 className="font-heading text-xl tracking-tight">{contract.title}</h2>
-        <p className="mt-1 text-sm text-muted-foreground">Prepared for {clientName}</p>
+        <h2 className="font-heading text-xl tracking-tight">
+          {contract.title}
+        </h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Prepared for {clientName}
+        </p>
       </div>
 
       <dl className="space-y-4">
@@ -23,13 +27,13 @@ export function ContractDocument({ contract, clientName }) {
                 {contract[key]}
               </dd>
             </div>
-          ) : null
+          ) : null,
         )}
       </dl>
 
       <p className="border-t border-border pt-4 text-xs text-muted-foreground">
-        This document is a record of agreement between the parties and is not
-        a substitute for legal review. For engagements requiring formal legal
+        This document is a record of agreement between the parties and is not a
+        substitute for legal review. For engagements requiring formal legal
         enforceability, consult qualified counsel and a dedicated e-signature
         provider.
       </p>

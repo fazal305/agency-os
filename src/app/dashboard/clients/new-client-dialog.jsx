@@ -56,7 +56,8 @@ export function NewClientDialog() {
           <DialogHeader>
             <DialogTitle>New client</DialogTitle>
             <DialogDescription>
-              Add a client company. You can fill in the rest of their profile later.
+              Add a client company. You can fill in the rest of their profile
+              later.
             </DialogDescription>
           </DialogHeader>
 
@@ -70,7 +71,11 @@ export function NewClientDialog() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="primary_contact_email">Contact email</Label>
-            <Input id="primary_contact_email" name="primary_contact_email" type="email" />
+            <Input
+              id="primary_contact_email"
+              name="primary_contact_email"
+              type="email"
+            />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -91,7 +96,9 @@ export function NewClientDialog() {
 
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+              {isPending ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              ) : null}
               Add client
             </Button>
           </DialogFooter>

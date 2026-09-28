@@ -58,7 +58,9 @@ export function FeedbackForm() {
       ) : null}
 
       <Button type="submit" disabled={isPending}>
-        {isPending ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+        {isPending ? (
+          <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+        ) : null}
         Submit feedback
       </Button>
     </form>

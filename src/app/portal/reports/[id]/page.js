@@ -40,7 +40,7 @@ export default async function PortalReportDetailPage({ params }) {
       <PageHeader
         title="Report"
         description={`${new Date(report.period_start).toLocaleDateString()} – ${new Date(
-          report.period_end
+          report.period_end,
         ).toLocaleDateString()}`}
       />
 
@@ -61,7 +61,7 @@ export default async function PortalReportDetailPage({ params }) {
                 {report[key]}
               </p>
             </div>
-          ) : null
+          ) : null,
         )}
       </div>
     </div>

@@ -19,7 +19,9 @@ export async function createDeliverable(formData) {
 
   const { error: uploadError } = await supabase.storage
     .from("deliverables")
-    .upload(path, file, { contentType: file.type || "application/octet-stream" });
+    .upload(path, file, {
+      contentType: file.type || "application/octet-stream",
+    });
 
   if (uploadError) {
     return { error: "Couldn't upload the file. Please try again." };

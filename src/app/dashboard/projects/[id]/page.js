@@ -13,7 +13,11 @@ export default async function ProjectDetailPage({ params }) {
   const supabase = await createClient();
 
   const [{ data: project }, { data: milestones }] = await Promise.all([
-    supabase.from("projects").select("*, clients(company_name)").eq("id", id).single(),
+    supabase
+      .from("projects")
+      .select("*, clients(company_name)")
+      .eq("id", id)
+      .single(),
     supabase
       .from("milestones")
       .select("id, title, due_date, completed_at")

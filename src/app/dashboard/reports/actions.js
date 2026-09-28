@@ -12,10 +12,16 @@ export async function createReport(formData) {
     return { error: "Client and reporting period are required." };
   }
 
-  const labels = formData.getAll("metric_label[]").map((v) => v.toString().trim());
+  const labels = formData
+    .getAll("metric_label[]")
+    .map((v) => v.toString().trim());
   const values = formData.getAll("metric_value[]").map((v) => Number(v) || 0);
-  const units = formData.getAll("metric_unit[]").map((v) => v.toString().trim());
-  const performances = formData.getAll("metric_performance[]").map((v) => v.toString());
+  const units = formData
+    .getAll("metric_unit[]")
+    .map((v) => v.toString().trim());
+  const performances = formData
+    .getAll("metric_performance[]")
+    .map((v) => v.toString());
 
   const metrics = labels
     .map((label, i) => ({
@@ -33,10 +39,13 @@ export async function createReport(formData) {
       client_id: clientId,
       period_start: periodStart,
       period_end: periodEnd,
-      executive_summary: formData.get("executive_summary")?.toString().trim() || null,
+      executive_summary:
+        formData.get("executive_summary")?.toString().trim() || null,
       insights: formData.get("insights")?.toString().trim() || null,
-      recommendations: formData.get("recommendations")?.toString().trim() || null,
-      next_priorities: formData.get("next_priorities")?.toString().trim() || null,
+      recommendations:
+        formData.get("recommendations")?.toString().trim() || null,
+      next_priorities:
+        formData.get("next_priorities")?.toString().trim() || null,
     })
     .select("id")
     .single();
@@ -44,9 +53,11 @@ export async function createReport(formData) {
   if (error) return { error: "Couldn't create the report. Please try again." };
 
   if (metrics.length > 0) {
-    await supabase.from("report_metrics").insert(
-      metrics.map((m, i) => ({ ...m, report_id: report.id, sort_order: i }))
-    );
+    await supabase
+      .from("report_metrics")
+      .insert(
+        metrics.map((m, i) => ({ ...m, report_id: report.id, sort_order: i })),
+      );
   }
 
   revalidatePath("/dashboard/reports");

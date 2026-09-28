@@ -22,7 +22,10 @@ export function SignContractForm({ contractId }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3 rounded-lg border border-border p-4">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-3 rounded-lg border border-border p-4"
+    >
       <div className="space-y-2">
         <Label htmlFor="signed_by_name">Type your full name to sign</Label>
         <Input
@@ -39,7 +42,9 @@ export function SignContractForm({ contractId }) {
         </p>
       ) : null}
       <Button type="submit" disabled={isPending}>
-        {isPending ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+        {isPending ? (
+          <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+        ) : null}
         Sign agreement
       </Button>
     </form>

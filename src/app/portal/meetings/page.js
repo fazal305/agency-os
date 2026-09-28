@@ -47,7 +47,10 @@ export default async function PortalMeetingsPage() {
       ) : (
         <ul className="divide-y divide-border rounded-lg border border-border">
           {meetings.map((meeting) => (
-            <li key={meeting.id} className="flex items-center justify-between px-4 py-4">
+            <li
+              key={meeting.id}
+              className="flex items-center justify-between px-4 py-4"
+            >
               <div>
                 <p className="text-sm font-medium">{meeting.title}</p>
                 <p className="text-xs text-muted-foreground">

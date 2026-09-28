@@ -35,7 +35,10 @@ export default async function ContractDetailPage({ params }) {
           </div>
         }
       />
-      <ContractDocument contract={contract} clientName={contract.clients?.company_name} />
+      <ContractDocument
+        contract={contract}
+        clientName={contract.clients?.company_name}
+      />
     </div>
   );
 }

@@ -3,7 +3,10 @@ import { PageHeader } from "@/components/page-header";
 import { EmptyState } from "@/components/empty-state";
 import { StageTracker } from "@/components/stage-tracker";
 import { createClient } from "@/lib/supabase/server";
-import { ONBOARDING_STEPS, deriveOnboardingIndex } from "@/lib/onboarding-stage";
+import {
+  ONBOARDING_STEPS,
+  deriveOnboardingIndex,
+} from "@/lib/onboarding-stage";
 
 export const metadata = { title: "Onboarding" };
 
@@ -20,7 +23,10 @@ export default async function OnboardingPage() {
     { data: reports },
     { data: feedback },
   ] = await Promise.all([
-    supabase.from("clients").select("id, company_name, welcome_sent_at").order("company_name"),
+    supabase
+      .from("clients")
+      .select("id, company_name, welcome_sent_at")
+      .order("company_name"),
     supabase.from("contracts").select("client_id, status"),
     supabase.from("invoices").select("client_id, status"),
     supabase.from("access_requests").select("client_id, status"),
@@ -65,31 +71,37 @@ export default async function OnboardingPage() {
           {clients.map((client) => {
             const stepIndex = deriveOnboardingIndex({
               hasContractSigned: (contractsByClient.get(client.id) ?? []).some(
-                (c) => c.status === "signed"
+                (c) => c.status === "signed",
               ),
               welcomeSentAt: client.welcome_sent_at,
               hasInvoicePaid: (invoicesByClient.get(client.id) ?? []).some(
-                (i) => i.status === "paid"
+                (i) => i.status === "paid",
               ),
               accessComplete:
                 (accessByClient.get(client.id) ?? []).length > 0 &&
                 (accessByClient.get(client.id) ?? []).every((a) =>
-                  ["received", "verified", "complete"].includes(a.status)
+                  ["received", "verified", "complete"].includes(a.status),
                 ),
               hasKickoffMeeting: (meetingsByClient.get(client.id) ?? []).some(
-                (m) => m.type === "kickoff"
+                (m) => m.type === "kickoff",
               ),
               hasProject: (projectsByClient.get(client.id) ?? []).length > 0,
               hasPublishedReport: (reportsByClient.get(client.id) ?? []).some(
-                (r) => r.status === "published"
+                (r) => r.status === "published",
               ),
               hasFeedback: (feedbackByClient.get(client.id) ?? []).length > 0,
             });
 
             return (
-              <li key={client.id} className="rounded-lg border border-border p-5">
+              <li
+                key={client.id}
+                className="rounded-lg border border-border p-5"
+              >
                 <p className="mb-4 font-medium">{client.company_name}</p>
-                <StageTracker steps={ONBOARDING_STEPS} currentIndex={stepIndex} />
+                <StageTracker
+                  steps={ONBOARDING_STEPS}
+                  currentIndex={stepIndex}
+                />
               </li>
             );
           })}

@@ -18,10 +18,14 @@ export function StageSelect({ projectId, status }) {
     <Select
       value={status}
       disabled={isPending}
-      onValueChange={(next) => startTransition(() => updateProjectStatus(projectId, next))}
+      onValueChange={(next) =>
+        startTransition(() => updateProjectStatus(projectId, next))
+      }
     >
       <SelectTrigger size="sm" className="w-40">
-        <SelectValue>{(value) => PROJECT_STATUS[value]?.label ?? value}</SelectValue>
+        <SelectValue>
+          {(value) => PROJECT_STATUS[value]?.label ?? value}
+        </SelectValue>
       </SelectTrigger>
       <SelectContent>
         {Object.entries(PROJECT_STATUS).map(([value, { label }]) => (

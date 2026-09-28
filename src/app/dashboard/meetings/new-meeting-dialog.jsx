@@ -64,7 +64,9 @@ export function NewMeetingDialog({ clients }) {
         <form action={handleSubmit} className="space-y-4">
           <DialogHeader>
             <DialogTitle>Schedule a meeting</DialogTitle>
-            <DialogDescription>Both you and the client will see it listed.</DialogDescription>
+            <DialogDescription>
+              Both you and the client will see it listed.
+            </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-2">
@@ -73,14 +75,21 @@ export function NewMeetingDialog({ clients }) {
           </div>
           <div className="space-y-2">
             <Label htmlFor="title">Title</Label>
-            <Input id="title" name="title" placeholder="Kickoff call" required />
+            <Input
+              id="title"
+              name="title"
+              placeholder="Kickoff call"
+              required
+            />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="type">Type</Label>
               <Select name="type" defaultValue="other">
                 <SelectTrigger className="w-full">
-                  <SelectValue>{(value) => MEETING_TYPE_LABEL[value] ?? value}</SelectValue>
+                  <SelectValue>
+                    {(value) => MEETING_TYPE_LABEL[value] ?? value}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {Object.entries(MEETING_TYPE_LABEL).map(([value, label]) => (
@@ -93,12 +102,21 @@ export function NewMeetingDialog({ clients }) {
             </div>
             <div className="space-y-2">
               <Label htmlFor="scheduled_at">Date &amp; time</Label>
-              <Input id="scheduled_at" name="scheduled_at" type="datetime-local" required />
+              <Input
+                id="scheduled_at"
+                name="scheduled_at"
+                type="datetime-local"
+                required
+              />
             </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="meeting_link">Meeting link</Label>
-            <Input id="meeting_link" name="meeting_link" placeholder="https://" />
+            <Input
+              id="meeting_link"
+              name="meeting_link"
+              placeholder="https://"
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="notes">Notes</Label>
@@ -113,7 +131,9 @@ export function NewMeetingDialog({ clients }) {
 
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              {isPending ? <Loader2 className="size-4 animate-spin" aria-hidden="true" /> : null}
+              {isPending ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              ) : null}
               Schedule
             </Button>
           </DialogFooter>

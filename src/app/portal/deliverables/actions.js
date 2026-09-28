@@ -13,7 +13,8 @@ export async function approveDeliverable(deliverableId) {
     .eq("status", "client_review")
     .select("id");
 
-  if (error || !data?.length) return { error: "Couldn't approve. Please try again." };
+  if (error || !data?.length)
+    return { error: "Couldn't approve. Please try again." };
   revalidatePath("/portal/deliverables");
   return { success: true };
 }

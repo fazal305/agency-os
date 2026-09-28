@@ -21,7 +21,10 @@ export default async function PortalProjectsPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Projects" description="What we're working on for you." />
+      <PageHeader
+        title="Projects"
+        description="What we're working on for you."
+      />
 
       {!projects?.length ? (
         <EmptyState
@@ -32,9 +35,13 @@ export default async function PortalProjectsPage() {
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2">
           {projects.map((project) => {
-            const status = PROJECT_STATUS[project.status] ?? PROJECT_STATUS.discovery;
+            const status =
+              PROJECT_STATUS[project.status] ?? PROJECT_STATUS.discovery;
             return (
-              <li key={project.id} className="rounded-lg border border-border p-5">
+              <li
+                key={project.id}
+                className="rounded-lg border border-border p-5"
+              >
                 <Link
                   href={`/portal/projects/${project.id}`}
                   className="font-medium hover:underline"
@@ -42,13 +49,16 @@ export default async function PortalProjectsPage() {
                   {project.name}
                 </Link>
                 {project.description ? (
-                  <p className="mt-1 text-sm text-muted-foreground">{project.description}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {project.description}
+                  </p>
                 ) : null}
                 <div className="mt-3 flex items-center justify-between">
                   <StatusBadge tone={status.tone} label={status.label} />
                   {project.target_date ? (
                     <span className="text-xs text-muted-foreground">
-                      Target {new Date(project.target_date).toLocaleDateString()}
+                      Target{" "}
+                      {new Date(project.target_date).toLocaleDateString()}
                     </span>
                   ) : null}
                 </div>
