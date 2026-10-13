@@ -24,12 +24,13 @@ const supabase = createClient(supabaseUrl, secretKey, {
 const DEMO_ADMIN = { email: "demo-admin@agencyos.test", password: "DemoAdmin123!" };
 const DEMO_CLIENT = { email: "demo-client@agencyos.test", password: "DemoClient123!" };
 
-async function upsertUser({ email, password }, metadata) {
+async function upsertUser({ email, password }, { role, full_name }) {
   const { data, error } = await supabase.auth.admin.createUser({
     email,
     password,
     email_confirm: true,
-    user_metadata: metadata,
+    app_metadata: { role },
+    user_metadata: { full_name },
   });
 
   if (error && error.message?.toLowerCase().includes("already been registered")) {
